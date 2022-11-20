@@ -1,0 +1,27 @@
+
+### Create a new user
+POST http://localhost:9000/api/user/v1/users
+Content-Type: application/json
+
+{
+  "first_name": "hung",
+  "last_name": "vi",
+  "email": "ngochung.vi90103@gmail.com"
+}
+
+### Modify an existing user
+PATCH http://localhost:9000/api/user/v1/users/3
+Content-Type: application/json
+
+{
+"first_name": "hung",
+"last_name": "vi",
+"email": "ngochung.vi903.16@gmail.com"
+}
+
+
+### Retrive an existing user by ID
+GET http://localhost:9000/api/user/v1/users/1
+Accept: application/json
+
+###

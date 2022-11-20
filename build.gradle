@@ -1,0 +1,39 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.2'
+        springSleuthVersion = '3.1.5'
+        springSleuthZipkinVersion = '3.1.5'
+        springCloudVersion = '2021.0.3'
+        dependencyManagementVersion = '1.0.13.RELEASE'
+        lombokVersion = '1.18.24'
+        commonsLang3Version = '3.12.0'
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
+    }
+
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${dependencyManagementVersion}"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+repositories {
+    mavenCentral()
+}
+
+group 'com.hungvi.omlab'
+version '1.0-SNAPSHOT'
+

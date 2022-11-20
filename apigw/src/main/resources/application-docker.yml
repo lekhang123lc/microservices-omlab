@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: apigw
+  zipkin:
+    base-url: http://zipkin:9411
+
+route:
+  userService: http://user-service:8080

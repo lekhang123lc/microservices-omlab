@@ -1,0 +1,6 @@
+rootProject.name = 'omlab'
+include 'lib:common'
+include 'apigw'
+include 'user-service'
+include 'activity-history-service'
+

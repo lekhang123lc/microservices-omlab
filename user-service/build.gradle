@@ -1,0 +1,65 @@
+buildscript {
+    ext {
+    }
+}
+plugins {
+    id 'java'
+}
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'org.springframework.boot'
+
+
+group 'com.hungvi.omlab'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+    compile.exclude module: "spring-boot-starter-tomcat"
+    compile.exclude group: "org.apache.tomcat.embed", module: "tomcat-juli"
+}
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: "${springBootVersion}"
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-dependencies', version: "${springCloudVersion}"
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth', version: "${springSleuthVersion}"
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-sleuth-zipkin', version: "${springSleuthZipkinVersion}"
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.9.2'
+
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: "${commonsLang3Version}"
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.4.1'
+
+    compile project(':lib:common')
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
