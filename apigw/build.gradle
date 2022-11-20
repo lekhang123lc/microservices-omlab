@@ -1,0 +1,39 @@
+buildscript {
+    ext {
+    }
+}
+plugins {
+    id 'java'
+}
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'org.springframework.boot'
+
+
+group 'com.hungvi.omlab'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: '3.1.4'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth', version: "${springSleuthVersion}"
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-sleuth-zipkin', version: "${springSleuthZipkinVersion}"
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
